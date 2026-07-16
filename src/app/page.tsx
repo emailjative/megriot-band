@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-8 md:py-12 px-4 md:px-6 text-center text-xs md:text-sm text-black">
+      <footer className="py-8 md:py-12 px-4 md:px-6 text-center text-xs md:text-sm text-white" style={{ textShadow: '0 1px 3px rgb(0,0,0,0.8)' }}>
         <p>&copy; 2026 Meg Riot. All rights reserved.</p>
       </footer>
     </>
