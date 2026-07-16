@@ -2,26 +2,82 @@
 
 import { useState } from "react";
 
+const translations = {
+  en: {
+    nav: ["Band", "Media", "Tour", "Merch", "Contact"],
+    heroTagline: "Raw energy. Unapologetic attitude.",
+    bandLabel: "About",
+    bandTitle: "The Band",
+    bandText: "Meg Riot is a punk rock band from Almada, Portugal. Formed in late 2025, the band brings raw energy and unapologetic attitude to the stage. With a sound rooted in classic punk and modern rock, Meg Riot is here to make noise.",
+    members: "Francisco - Guitar \u2022 Kat - Vocals \u2022 Joao - Bass \u2022 Bruno - Drums",
+    mediaLabel: "Follow",
+    mediaTitle: "Media",
+    tourLabel: "Live",
+    tourTitle: "Upcoming Shows",
+    merchLabel: "Store",
+    merchTitle: "Merch",
+    merchItem: "Meg Riot T-Shirt",
+    merchOrder: "Order via Instagram",
+    contactLabel: "Reach Out",
+    contactTitle: "Contact",
+    contactText: "For booking and merch, send us a DM on Instagram.",
+    contactDM: "DM on Instagram",
+    footer: "\u00a9 2026 Meg Riot. All rights reserved.",
+  },
+  pt: {
+    nav: ["Banda", "M\u00e9dia", "Espet\u00e1culos", "Merch", "Contacto"],
+    heroTagline: "Energia crua. Atitude sem desculpas.",
+    bandLabel: "Sobre",
+    bandTitle: "A Banda",
+    bandText: "Meg Riot \u00e9 uma banda de punk rock de Almada, Portugal. Formada no final de 2025, a banda traz energia crua e atitude sem desculpas ao palco. Com um som enraizado no punk cl\u00e1ssico e rock moderno, o Meg Riot est\u00e1 aqui para fazer barulho.",
+    members: "Francisco - Guitarra \u2022 Kat - Vocal \u2022 Joao - Baixo \u2022 Bruno - Bateria",
+    mediaLabel: "Seguir",
+    mediaTitle: "M\u00e9dia",
+    tourLabel: "Ao Vivo",
+    tourTitle: "Pr\u00f3ximos Espet\u00e1culos",
+    merchLabel: "Loja",
+    merchTitle: "Merch",
+    merchItem: "T-Shirt Meg Riot",
+    merchOrder: "Encomendar via Instagram",
+    contactLabel: "Falar Connosco",
+    contactTitle: "Contacto",
+    contactText: "Para booking e merch, envia-nos DM no Instagram.",
+    contactDM: "DM no Instagram",
+    footer: "\u00a9 2026 Meg Riot. Todos os direitos reservados.",
+  },
+};
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLang] = useState<"en" | "pt">("en");
+  const t = translations[lang];
 
-  const navLinks = [
-    { href: "#band", label: "Band" },
-    { href: "#media", label: "Media" },
-    { href: "#tour", label: "Tour" },
-    { href: "#merch", label: "Merch" },
-    { href: "#contact", label: "Contact" },
-  ];
+  const navLabels = t.nav;
+  const navHrefs = ["#band", "#media", "#tour", "#merch", "#contact"];
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
           <h1 className="text-base md:text-lg font-semibold tracking-tight uppercase">Meg Riot</h1>
-          <nav className="hidden md:flex gap-8 text-sm text-white font-medium">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-zinc-300 transition-colors">{link.label}</a>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-white font-medium">
+            {navLabels.map((label, i) => (
+              <a key={navHrefs[i]} href={navHrefs[i]} className="hover:text-zinc-300 transition-colors">{label}</a>
             ))}
+            <div className="flex items-center gap-1 ml-2 border-l border-white/20 pl-4">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2 py-1 text-xs font-bold rounded transition-colors ${lang === "en" ? "bg-white text-black" : "text-white/60 hover:text-white"}`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("pt")}
+                className={`px-2 py-1 text-xs font-bold rounded transition-colors ${lang === "pt" ? "bg-white text-black" : "text-white/60 hover:text-white"}`}
+              >
+                PT
+              </button>
+            </div>
           </nav>
           <button
             className="md:hidden text-white p-2 -mr-2"
@@ -40,16 +96,30 @@ export default function Home() {
         {menuOpen && (
           <div className="md:hidden border-t border-white/10">
             <nav className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
+              {navLabels.map((label, i) => (
                 <a
-                  key={link.href}
-                  href={link.href}
+                  key={navHrefs[i]}
+                  href={navHrefs[i]}
                   className="block text-base text-white font-medium py-2"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.label}
+                  {label}
                 </a>
               ))}
+              <div className="flex items-center gap-2 pt-2 border-t border-white/10">
+                <button
+                  onClick={() => setLang("en")}
+                  className={`px-3 py-1 text-sm font-bold rounded transition-colors ${lang === "en" ? "bg-white text-black" : "text-white/60 hover:text-white"}`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setLang("pt")}
+                  className={`px-3 py-1 text-sm font-bold rounded transition-colors ${lang === "pt" ? "bg-white text-black" : "text-white/60 hover:text-white"}`}
+                >
+                  PT
+                </button>
+              </div>
             </nav>
           </div>
         )}
@@ -65,7 +135,7 @@ export default function Home() {
             Meg Riot
           </h2>
           <p className="text-base md:text-xl text-white/80 max-w-md mx-auto mt-6 md:mt-8" style={{ textShadow: '0 2px 10px rgb(0,0,0,0.8)' }}>
-            Raw energy. Unapologetic attitude.
+            {t.heroTagline}
           </p>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
@@ -77,24 +147,22 @@ export default function Home() {
 
       <section id="band" className="section-overlay relative py-20 md:py-32 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">About</p>
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">The Band</h3>
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">{t.bandLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">{t.bandTitle}</h3>
           <p className="text-base md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto mb-10 md:mb-16">
-            Meg Riot is a punk rock band from Almada, Portugal. Formed in late 2025,
-            the band brings raw energy and unapologetic attitude to the stage.
-            With a sound rooted in classic punk and modern rock, Meg Riot is here to make noise.
+            {t.bandText}
           </p>
           <img src="/megband.jpg" alt="Meg Riot band" className="rounded-2xl md:rounded-3xl w-48 md:w-96 h-auto mx-auto mb-8 md:mb-12" />
           <p className="text-base md:text-lg text-white/80">
-            Francisco - Guitar &bull; Kat - Vocals &bull; Joao - Bass &bull; Bruno - Drums
+            {t.members}
           </p>
         </div>
       </section>
 
       <section id="media" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">Follow</p>
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">Media</h3>
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">{t.mediaLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">{t.mediaTitle}</h3>
           <ul className="space-y-4 md:space-y-6 inline-block">
             <li>
               <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
@@ -129,8 +197,8 @@ export default function Home() {
 
       <section id="tour" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">Live</p>
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">Upcoming Shows</h3>
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">{t.tourLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">{t.tourTitle}</h3>
           <ul className="space-y-4 md:space-y-6 inline-block">
             <li>
               <div className="inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl bg-black/50 border border-white/10">
@@ -150,16 +218,16 @@ export default function Home() {
 
       <section id="merch" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">Store</p>
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">Merch</h3>
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">{t.merchLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">{t.merchTitle}</h3>
           <div className="flex justify-center">
             <div className="rounded-2xl md:rounded-3xl bg-black/50 border border-white/10 overflow-hidden max-w-md w-full">
               <div className="aspect-square bg-cover bg-center" style={{ backgroundImage: "url('/merch2.jpeg')" }} />
               <div className="p-5 md:p-8">
-                <p className="text-xl md:text-2xl font-semibold mb-2">Meg Riot T-Shirt</p>
+                <p className="text-xl md:text-2xl font-semibold mb-2">{t.merchItem}</p>
                 <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
                   className="block md:inline-block px-6 py-3 rounded-full bg-white text-black font-semibold text-sm text-center hover:bg-zinc-200 transition-colors">
-                  Order via Instagram
+                  {t.merchOrder}
                 </a>
               </div>
             </div>
@@ -170,23 +238,23 @@ export default function Home() {
 
       <section id="contact" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">Reach Out</p>
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">Contact</h3>
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/60 mb-3 md:mb-4">{t.contactLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12">{t.contactTitle}</h3>
           <p className="text-base md:text-xl text-white/80 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto">
-            For booking and merch, send us a DM on Instagram.
+            {t.contactText}
           </p>
           <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl bg-black/50 border border-white/10 hover:border-white/20 transition-colors">
             <svg className="w-8 h-8 md:w-10 md:h-10 shrink-0" viewBox="0 0 24 24" fill="white">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
             </svg>
-            <span className="text-lg md:text-2xl font-semibold">DM on Instagram</span>
+            <span className="text-lg md:text-2xl font-semibold">{t.contactDM}</span>
           </a>
         </div>
       </section>
 
       <footer className="py-8 md:py-12 px-4 md:px-6 text-center text-xs md:text-sm text-white" style={{ textShadow: '0 1px 3px rgb(0,0,0,0.8)' }}>
-        <p>&copy; 2026 Meg Riot. All rights reserved.</p>
+        <p>{t.footer}</p>
       </footer>
     </>
   );
