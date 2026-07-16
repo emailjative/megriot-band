@@ -1,65 +1,272 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const members = [
+    { name: "Kat", role: "Vocals" },
+    { name: "Bruno", role: "Drums" },
+    { name: "Joao", role: "Bass" },
+    { name: "Francisco", role: "Guitar" },
+  ];
+
+  const navLinks = [
+    { href: "#band", label: "Band" },
+    { href: "#media", label: "Media" },
+    { href: "#tour", label: "Tour" },
+    { href: "#merch", label: "Merch" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-black/40 text-white font-sans">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 bg-black"
+      >
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+          <h1 className="text-lg font-semibold tracking-tight uppercase">Meg Riot</h1>
+
+          <nav className="hidden md:flex gap-8 text-sm text-white font-medium">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {menuOpen && (
+          <nav className="md:hidden bg-black border-t border-white/10 px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block text-lg text-white hover:text-zinc-300 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      <section className="relative h-[85vh] sm:h-screen flex flex-col items-center justify-center px-4">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/60" />
+        <div className="relative z-10 text-center">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-4 sm:mb-6">
+            Punk Rock &bull; Almada, Portugal
+          </p>
+          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase mb-4 sm:mb-6 text-white">
+            Meg Riot
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-md mx-auto mt-6 sm:mt-8 px-4">
+            Raw energy. Unapologetic attitude.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
-      </main>
+      </section>
+
+      <section id="band" className="py-20 sm:py-32 px-4 sm:px-6 bg-black/30">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-3 sm:mb-4">About</p>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-12">
+            The Band
+          </h3>
+          <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-10 sm:mb-16 max-w-2xl">
+            Meg Riot is a punk rock band from Almada, Portugal. Formed in late 2025,
+            the band brings raw energy and unapologetic attitude to the stage.
+            With a sound rooted in classic punk and modern rock, Meg Riot is here to make noise.
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {members.map((member) => (
+              <div key={member.name} className="p-4 sm:p-6 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-white/10 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-900 mb-3 sm:mb-4 flex items-center justify-center text-xl sm:text-2xl font-bold">
+                  {member.name[0]}
+                </div>
+                <p className="font-semibold text-base sm:text-lg">{member.name}</p>
+                <p className="text-white/70 text-xs sm:text-sm">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="media" className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5 bg-black/30">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-3 sm:mb-4">Follow</p>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-12">
+            Media
+          </h3>
+          <div className="space-y-4">
+            <a
+              href="https://instagram.com/megriotband"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 p-6 sm:p-8 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-white/10 transition-all duration-300"
+            >
+              <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              <span className="text-xl sm:text-2xl font-semibold">Instagram</span>
+            </a>
+            <a
+              href="https://www.youtube.com/@MegRiot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 p-6 sm:p-8 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-white/10 transition-all duration-300"
+            >
+              <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="white">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              <span className="text-xl sm:text-2xl font-semibold">YouTube</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@meg.riot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 p-6 sm:p-8 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-white/10 transition-all duration-300"
+            >
+              <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="white">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              </svg>
+              <span className="text-xl sm:text-2xl font-semibold">TikTok</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="tour" className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5 bg-black/30">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-3 sm:mb-4">Live</p>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-12">
+            Upcoming Shows
+          </h3>
+          <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-white/10 transition-all duration-300">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+              <div className="flex items-center gap-6 sm:gap-8">
+                <div className="text-center min-w-[60px]">
+                  <p className="text-3xl sm:text-4xl font-bold">18</p>
+                  <p className="text-xs sm:text-sm text-white/70 uppercase">Jul</p>
+                </div>
+                <div>
+                  <p className="text-xl sm:text-2xl font-semibold">Punks &amp; Pints</p>
+                  <p className="text-white/70 text-sm sm:text-base">Fermentage Brewpub</p>
+                </div>
+              </div>
+              <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors">
+                Tickets Local Only
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="merch" className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5 bg-black/30">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-3 sm:mb-4">Store</p>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-12">
+            Merch
+          </h3>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="rounded-3xl bg-zinc-900/50 border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300">
+              <div className="aspect-square bg-cover bg-center" style={{ backgroundImage: "url('/merch1.jpeg')" }} />
+              <div className="p-6 sm:p-8">
+                <p className="text-xl sm:text-2xl font-semibold mb-2">Meg Riot T-Shirt</p>
+                <p className="text-white/70 mb-4">15 &euro;</p>
+                <a
+                  href="https://instagram.com/megriotband"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors"
+                >
+                  Order via Instagram
+                </a>
+              </div>
+            </div>
+            <div className="rounded-3xl bg-zinc-900/50 border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300">
+              <div className="aspect-square bg-cover bg-center" style={{ backgroundImage: "url('/merch2.jpeg')" }} />
+              <div className="p-6 sm:p-8">
+                <p className="text-xl sm:text-2xl font-semibold mb-2">Meg Riot T-Shirt</p>
+                <p className="text-white/70 mb-4">15 &euro;</p>
+                <a
+                  href="https://instagram.com/megriotband"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors"
+                >
+                  Order via Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5 bg-black/30">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white mb-3 sm:mb-4">Reach Out</p>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-12">
+            Contact
+          </h3>
+          <form className="max-w-xl space-y-4 sm:space-y-6">
+            <input
+              type="text"
+              placeholder="Name"
+              className="w-full p-3 sm:p-4 rounded-xl bg-zinc-900/50 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-3 sm:p-4 rounded-xl bg-zinc-900/50 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors"
+            />
+            <textarea
+              placeholder="Message"
+              rows={4}
+              className="w-full p-3 sm:p-4 rounded-xl bg-zinc-900/50 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors resize-none"
+            />
+            <button
+              type="submit"
+              className="w-full sm:w-auto px-8 py-3 sm:py-4 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-white/10 text-center text-xs sm:text-sm text-white/50 bg-black/50">
+        <p>&copy; 2026 Meg Riot. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
