@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobileView, setIsMobileView] = useState(false);
 
   const navLinks = [
     { href: "#band", label: "Band" },
@@ -16,28 +15,6 @@ export default function Home() {
 
   return (
     <>
-      <button
-        onClick={() => setIsMobileView(!isMobileView)}
-        className="fixed bottom-6 right-6 z-[100] px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-medium hover:bg-white/30 transition-all flex items-center gap-2"
-      >
-        {isMobileView ? (
-          <>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            Desktop
-          </>
-        ) : (
-          <>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
-            Mobile
-          </>
-        )}
-      </button>
-
-      <div className={isMobileView ? "mx-auto w-[375px] border-x border-white/10 min-h-screen" : ""}>
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
           <h1 className="text-base md:text-lg font-semibold tracking-tight uppercase">Meg Riot</h1>
@@ -211,7 +188,6 @@ export default function Home() {
       <footer className="mt-8 md:mt-64 py-8 md:py-12 px-4 md:px-6 border-t border-white/10 text-center text-xs md:text-sm text-black">
         <p>&copy; 2026 Meg Riot. All rights reserved.</p>
       </footer>
-      </div>
     </>
   );
 }
