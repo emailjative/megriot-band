@@ -208,7 +208,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-lg md:text-2xl font-semibold">Punks &amp; Pints</p>
-                  <p className="text-white/60 text-sm md:text-base">Fermentage Brewpub</p>
+                  <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd1933d7c5734b25:0x3f9aef55d85f622f?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer" className="text-white/60 text-sm md:text-base hover:text-white/80 transition-colors underline underline-offset-2">Fermentage Brewpub</a>
                 </div>
               </div>
             </li>
