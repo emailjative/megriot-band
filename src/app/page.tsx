@@ -80,7 +80,7 @@ const TikTokIcon = ({ color }: { color: string }) => (
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState<"en" | "pt">("en");
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const t = translations[lang];
 
   useEffect(() => {
