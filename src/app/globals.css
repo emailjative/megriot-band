@@ -16,56 +16,32 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #ffffff;
-  color: #000000;
+html, body {
+  background: #000 url('/megriot-logo.jpeg') no-repeat center center !important;
+  background-size: cover !important;
+  background-attachment: scroll !important;
+  color: #fff !important;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  body {
+    background-attachment: fixed;
+  }
 }
 
 .section-overlay {
   position: relative;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.section-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('/megriot-logo.jpeg') center/cover no-repeat;
-  filter: invert(1);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
+@media (max-width: 767px) {
+  .section-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .section-overlay > * {
   position: relative;
   z-index: 1;
-}
-
-body.dark-mode {
-  background: #000 url('/megriot-logo.jpeg') no-repeat center center;
-  background-size: cover;
-  background-attachment: scroll;
-  color: #fff;
-}
-
-@media (min-width: 768px) {
-  body.dark-mode {
-    background-attachment: fixed;
-  }
-}
-
-body.dark-mode .section-overlay {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 767px) {
-  body.dark-mode .section-overlay {
-    background: rgba(0, 0, 0, 0.3);
-  }
-}
-
-body.dark-mode .section-overlay::before {
-  display: none;
 }
