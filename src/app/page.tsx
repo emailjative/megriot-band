@@ -215,29 +215,46 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <p className={`text-xs md:text-sm uppercase tracking-[0.3em] mb-3 md:mb-4 ${dark ? "text-white/50" : "text-black/50"}`}>{t.mediaLabel}</p>
           <h3 className={`text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12 ${dark ? "text-white" : "text-black"}`}>{t.mediaTitle}</h3>
-          <ul className="space-y-4 md:space-y-6 inline-block">
-            <li>
-              <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
-                className={`inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-white/20" : "bg-black/5 border-black/10 hover:border-black/20"}`}>
-                <InstagramIcon color={iconColor} />
-                <span className={`text-lg md:text-2xl font-semibold ${dark ? "text-white" : "text-black"}`}>Instagram</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/@MegRiot" target="_blank" rel="noopener noreferrer"
-                className={`inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-white/20" : "bg-black/5 border-black/10 hover:border-black/20"}`}>
-                <YouTubeIcon color={iconColor} />
-                <span className={`text-lg md:text-2xl font-semibold ${dark ? "text-white" : "text-black"}`}>YouTube</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.tiktok.com/@meg.riot" target="_blank" rel="noopener noreferrer"
-                className={`inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-white/20" : "bg-black/5 border-black/10 hover:border-black/20"}`}>
-                <TikTokIcon color={iconColor} />
-                <span className={`text-lg md:text-2xl font-semibold ${dark ? "text-white" : "text-black"}`}>TikTok</span>
-              </a>
-            </li>
-          </ul>
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
+              <iframe src="https://www.youtube.com/embed/Vjz3lkueiC0" title="Meg Riot" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-pink-500/50" : "bg-black/5 border-black/10 hover:border-pink-500/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                  <InstagramIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@megriotband</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>Instagram</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Follow for behind the scenes</p>
+            </a>
+            <a href="https://www.youtube.com/@MegRiot" target="_blank" rel="noopener noreferrer"
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-red-500/50" : "bg-black/5 border-black/10 hover:border-red-500/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
+                  <YouTubeIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@MegRiot</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>YouTube</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Live performances &amp; videos</p>
+            </a>
+            <a href="https://www.tiktok.com/@meg.riot" target="_blank" rel="noopener noreferrer"
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-cyan-400/50" : "bg-black/5 border-black/10 hover:border-cyan-400/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-black flex items-center justify-center border border-white/20">
+                  <TikTokIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@meg.riot</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>TikTok</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Short clips &amp; chaos</p>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -248,13 +265,8 @@ export default function Home() {
           <ul className="space-y-4 md:space-y-6 inline-block">
             <li>
               <div className={`inline-flex items-center gap-4 p-5 md:p-8 rounded-2xl border ${dark ? "bg-white/5 border-white/10" : "bg-black/5 border-black/10"}`}>
-                <div className="text-center min-w-[50px]">
-                  <p className={`text-3xl md:text-4xl font-bold ${dark ? "text-white" : "text-black"}`}>18</p>
-                  <p className={`text-xs md:text-sm uppercase ${dark ? "text-white/50" : "text-black/50"}`}>Jul</p>
-                </div>
                 <div>
-                  <p className={`text-lg md:text-2xl font-semibold ${dark ? "text-white" : "text-black"}`}>Punks &amp; Pints</p>
-                  <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd1933d7c5734b25:0x3f9aef55d85f622f?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer" className={`text-sm md:text-base underline underline-offset-2 transition-colors ${dark ? "text-white/50 hover:text-white/70" : "text-black/50 hover:text-black/70"}`}>Fermentage Brewpub</a>
+                  <p className={`text-lg md:text-2xl font-semibold ${dark ? "text-white" : "text-black"}`}>TBD</p>
                 </div>
               </div>
             </li>
