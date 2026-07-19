@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const translations = {
   en: {
@@ -47,6 +47,18 @@ const translations = {
   },
 };
 
+const SunIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+  </svg>
+);
+
 const InstagramIcon = ({ color }: { color: string }) => (
   <svg className="w-8 h-8 md:w-10 md:h-10 shrink-0" viewBox="0 0 24 24" fill={color}>
     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -68,8 +80,12 @@ const TikTokIcon = ({ color }: { color: string }) => (
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState<"en" | "pt">("en");
-  const dark = true;
+  const [dark, setDark] = useState(true);
   const t = translations[lang];
+
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", dark);
+  }, [dark]);
 
   const navLabels = t.nav;
   const navHrefs = ["#band", "#media", "#tour", "#merch", "#contact"];
@@ -99,8 +115,22 @@ export default function Home() {
                 PT
               </button>
             </div>
+            <button
+              onClick={() => setDark(!dark)}
+              className={`ml-2 p-2 rounded-full transition-colors ${dark ? "text-yellow-400 hover:bg-white/10" : "text-black/60 hover:bg-black/5"}`}
+              aria-label="Toggle theme"
+            >
+              {dark ? <SunIcon /> : <MoonIcon />}
+            </button>
           </nav>
-          <div className="md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={() => setDark(!dark)}
+              className={`p-2 rounded-full transition-colors ${dark ? "text-yellow-400" : "text-black/60"}`}
+              aria-label="Toggle theme"
+            >
+              {dark ? <SunIcon /> : <MoonIcon />}
+            </button>
             <button
               className={`p-2 -mr-2 ${dark ? "text-white" : "text-black"}`}
               onClick={() => setMenuOpen(!menuOpen)}
@@ -190,21 +220,39 @@ export default function Home() {
               <iframe src="https://www.youtube.com/embed/Vjz3lkueiC0" title="Meg Riot" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
-              className={`inline-flex items-center gap-3 px-6 py-3 rounded-full border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-pink-500/50 text-white" : "bg-black/5 border-black/10 hover:border-pink-500/50 text-black"}`}>
-              <InstagramIcon color={iconColor} />
-              <span className="font-semibold">Instagram</span>
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-pink-500/50" : "bg-black/5 border-black/10 hover:border-pink-500/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                  <InstagramIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@megriotband</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>Instagram</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Follow for behind the scenes</p>
             </a>
             <a href="https://www.youtube.com/@MegRiot" target="_blank" rel="noopener noreferrer"
-              className={`inline-flex items-center gap-3 px-6 py-3 rounded-full border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-red-500/50 text-white" : "bg-black/5 border-black/10 hover:border-red-500/50 text-black"}`}>
-              <YouTubeIcon color={iconColor} />
-              <span className="font-semibold">YouTube</span>
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-red-500/50" : "bg-black/5 border-black/10 hover:border-red-500/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
+                  <YouTubeIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@MegRiot</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>YouTube</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Live performances &amp; videos</p>
             </a>
             <a href="https://www.tiktok.com/@meg.riot" target="_blank" rel="noopener noreferrer"
-              className={`inline-flex items-center gap-3 px-6 py-3 rounded-full border transition-colors ${dark ? "bg-white/5 border-white/10 hover:border-cyan-400/50 text-white" : "bg-black/5 border-black/10 hover:border-cyan-400/50 text-black"}`}>
-              <TikTokIcon color={iconColor} />
-              <span className="font-semibold">TikTok</span>
+              className={`rounded-2xl border p-6 text-center transition-all hover:scale-105 ${dark ? "bg-white/5 border-white/10 hover:border-cyan-400/50" : "bg-black/5 border-black/10 hover:border-cyan-400/50"}`}>
+              <div className="flex justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-black flex items-center justify-center border border-white/20">
+                  <TikTokIcon color="white" />
+                </div>
+              </div>
+              <p className={`text-sm ${dark ? "text-white/50" : "text-black/50"}`}>@meg.riot</p>
+              <p className={`text-xl font-bold mt-1 ${dark ? "text-white" : "text-black"}`}>TikTok</p>
+              <p className={`text-xs mt-3 ${dark ? "text-white/40" : "text-black/40"}`}>Short clips &amp; chaos</p>
             </a>
           </div>
         </div>
