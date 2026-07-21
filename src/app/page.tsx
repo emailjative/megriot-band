@@ -153,7 +153,7 @@ export default function Home() {
 
       {/* ─── Header ─────────────────────────────────────────────────── */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
-        <div className={`max-w-7xl mx-auto px-5 md:px-8 transition-all duration-500 ${scrolled ? "bg-white/[0.04] backdrop-blur-2xl border border-white/[0.06] rounded-2xl mx-4 md:mx-8 px-5 py-3" : ""}`}>
+        <div className={`max-w-7xl mx-auto px-8 md:px-16 lg:px-24 transition-all duration-500 ${scrolled ? "bg-white/[0.04] backdrop-blur-2xl border border-white/[0.06] rounded-2xl mx-4 md:mx-8 px-5 py-3" : ""}`}>
           <div className="flex items-center justify-between">
             <a href="#" className="flex items-center gap-3">
               <img src="/megriot-logo.jpeg" alt="Meg Riot" className="h-7 md:h-8 w-auto object-contain" />
@@ -268,7 +268,7 @@ export default function Home() {
       </section>
 
       {/* ─── Band ───────────────────────────────────────────────────── */}
-      <section id="band" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="band" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <RevealDiv>
             <div className="relative group">
@@ -307,7 +307,7 @@ export default function Home() {
       </section>
 
       {/* ─── Music ──────────────────────────────────────────────────── */}
-      <section id="music" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="music" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto text-center">
           <RevealDiv>
             <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/70">Stream</span>
@@ -334,7 +334,7 @@ export default function Home() {
       </section>
 
       {/* ─── Tour ───────────────────────────────────────────────────── */}
-      <section id="tour" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="tour" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto">
           <RevealDiv>
             <div className="relative overflow-hidden rounded-3xl">
@@ -359,7 +359,7 @@ export default function Home() {
       </section>
 
       {/* ─── Merch ──────────────────────────────────────────────────── */}
-      <section id="merch" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="merch" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <RevealDiv>
@@ -403,7 +403,7 @@ export default function Home() {
       </section>
 
       {/* ─── Videos ─────────────────────────────────────────────────── */}
-      <section id="videos" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="videos" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <RevealDiv>
@@ -457,7 +457,7 @@ export default function Home() {
       </section>
 
       {/* ─── Socials ────────────────────────────────────────────────── */}
-      <section className="relative py-40 md:py-56 px-5 md:px-8">
+      <section className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto text-center">
           <RevealDiv>
             <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/70">Connect</span>
@@ -486,7 +486,7 @@ export default function Home() {
       </section>
 
       {/* ─── Contact ────────────────────────────────────────────────── */}
-      <section id="contact" className="relative py-40 md:py-56 px-5 md:px-8">
+      <section id="contact" className="relative py-40 md:py-56 px-8 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto text-center">
           <RevealDiv>
             <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/70">Reach Out</span>
@@ -517,7 +517,7 @@ export default function Home() {
       </section>
 
       {/* ─── Newsletter ─────────────────────────────────────────────── */}
-      <section className="relative py-32 md:py-40 px-5 md:px-8">
+      <section className="relative py-32 md:py-40 px-8 md:px-16 lg:px-24">
         <RevealDiv>
           <div className="max-w-xl mx-auto text-center p-8 md:p-12 rounded-3xl bg-white/[0.02] border border-white/[0.05]">
             <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/70">Stay Updated</span>
@@ -536,7 +536,7 @@ export default function Home() {
       </section>
 
       {/* ─── Footer ─────────────────────────────────────────────────── */}
-      <footer className="py-12 px-5 md:px-8 border-t border-white/[0.04]">
+      <footer className="py-12 px-8 md:px-16 lg:px-24 border-t border-white/[0.04]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
             {/* Social icons */}
