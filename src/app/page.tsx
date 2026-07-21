@@ -4,14 +4,14 @@ import { useState } from "react";
 
 const translations = {
   en: {
-    nav: ["Band", "Media", "Tour", "Merch", "Contact"],
+    nav: ["Band", "Videos", "Tour", "Merch", "Contact"],
     heroTagline: "Raw energy. Unapologetic attitude.",
     bandLabel: "About",
     bandTitle: "The Band",
     bandText: "Meg Riot is a punk rock band from Almada, Portugal. Formed in late 2025, the band brings raw energy and unapologetic attitude to the stage. With a sound rooted in classic punk and modern rock, Meg Riot is here to make noise.",
     members: "Francisco - Guitar \u2022 Kat - Vocals \u2022 Joao - Bass \u2022 Bruno - Drums",
     mediaLabel: "Follow",
-    mediaTitle: "Media",
+    mediaTitle: "Videos",
     tourLabel: "Live",
     tourTitle: "Upcoming Shows",
     merchLabel: "Store",
@@ -26,14 +26,14 @@ const translations = {
     footer: "\u00a9 2026 Meg Riot. All rights reserved.",
   },
   pt: {
-    nav: ["Banda", "M\u00e9dia", "Espet\u00e1culos", "Merch", "Contacto"],
+    nav: ["Banda", "V\u00eddeos", "Espet\u00e1culos", "Merch", "Contacto"],
     heroTagline: "Energia crua. Atitude sem desculpas.",
     bandLabel: "Sobre",
     bandTitle: "A Banda",
     bandText: "Meg Riot \u00e9 uma banda de punk rock de Almada, Portugal. Formada no final de 2025, a banda traz energia crua e atitude sem desculpas ao palco. Com um som enraizado no punk cl\u00e1ssico e rock moderno, o Meg Riot est\u00e1 aqui para fazer barulho.",
     members: "Francisco - Guitarra \u2022 Kat - Vocal \u2022 Joao - Baixo \u2022 Bruno - Bateria",
     mediaLabel: "Seguir",
-    mediaTitle: "M\u00e9dia",
+    mediaTitle: "V\u00eddeos",
     tourLabel: "Ao Vivo",
     tourTitle: "Pr\u00f3ximos Espet\u00e1culos",
     merchLabel: "Loja",
@@ -79,7 +79,7 @@ export default function Home() {
   const t = translations[lang];
 
   const navLabels = t.nav;
-  const navHrefs = ["#band", "#media", "#tour", "#merch", "#contact"];
+  const navHrefs = ["#band", "#videos", "#tour", "#merch", "#contact"];
 
   return (
     <div className="min-h-screen bg-transparent text-white">
@@ -186,7 +186,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="media" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
+      <section id="videos" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] mb-3 md:mb-4 text-white/80">{t.mediaLabel}</p>
           <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12 text-white">{t.mediaTitle}</h3>
