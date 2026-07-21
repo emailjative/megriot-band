@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const translations = {
   en: {
-    nav: ["Band", "Videos", "Tour", "Merch", "Contact"],
+    nav: ["Band", "Videos", "Media", "Tour", "Merch", "Contact"],
     heroTagline: "Raw energy. Unapologetic attitude.",
     bandLabel: "About",
     bandTitle: "The Band",
@@ -12,6 +12,8 @@ const translations = {
     members: "Francisco - Guitar \u2022 Kat - Vocals \u2022 Joao - Bass \u2022 Bruno - Drums",
     mediaLabel: "Follow",
     mediaTitle: "Videos",
+    socialsLabel: "Connect",
+    socialsTitle: "Media",
     tourLabel: "Live",
     tourTitle: "Upcoming Shows",
     merchLabel: "Store",
@@ -26,7 +28,7 @@ const translations = {
     footer: "\u00a9 2026 Meg Riot. All rights reserved.",
   },
   pt: {
-    nav: ["Banda", "V\u00eddeos", "Espet\u00e1culos", "Merch", "Contacto"],
+    nav: ["Banda", "V\u00eddeos", "M\u00eddia", "Espet\u00e1culos", "Merch", "Contacto"],
     heroTagline: "Energia crua. Atitude sem desculpas.",
     bandLabel: "Sobre",
     bandTitle: "A Banda",
@@ -34,6 +36,8 @@ const translations = {
     members: "Francisco - Guitarra \u2022 Kat - Vocal \u2022 Joao - Baixo \u2022 Bruno - Bateria",
     mediaLabel: "Seguir",
     mediaTitle: "V\u00eddeos",
+    socialsLabel: "Conectar",
+    socialsTitle: "M\u00eddia",
     tourLabel: "Ao Vivo",
     tourTitle: "Pr\u00f3ximos Espet\u00e1culos",
     merchLabel: "Loja",
@@ -79,7 +83,7 @@ export default function Home() {
   const t = translations[lang];
 
   const navLabels = t.nav;
-  const navHrefs = ["#band", "#videos", "#tour", "#merch", "#contact"];
+  const navHrefs = ["#band", "#videos", "#media", "#tour", "#merch", "#contact"];
 
   return (
     <div className="min-h-screen bg-transparent text-white">
@@ -190,11 +194,18 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] mb-3 md:mb-4 text-white/80">{t.mediaLabel}</p>
           <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12 text-white">{t.mediaTitle}</h3>
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-2xl mx-auto">
             <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
               <iframe src="https://www.youtube.com/embed/Vjz3lkueiC0" title="Meg Riot" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="media" className="section-overlay relative py-20 md:py-32 px-4 md:px-6 border-t border-white/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] mb-3 md:mb-4 text-white/80">{t.socialsLabel}</p>
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 md:mb-12 text-white">{t.socialsTitle}</h3>
           <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
             <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 px-5 py-3 rounded-full border transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-pink-500/50">
