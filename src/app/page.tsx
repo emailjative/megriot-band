@@ -335,23 +335,21 @@ export default function Home() {
 
       {/* ─── Tour ───────────────────────────────────────────────────── */}
       <section id="tour" className="relative py-52 md:py-72 px-8 md:px-16 lg:px-24">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <RevealDiv>
             <div className="relative overflow-hidden rounded-3xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10" />
-              <img src="/megband.jpg" alt="" className="w-full h-72 md:h-96 object-cover" />
-              <div className="absolute inset-0 z-20 flex items-center">
-                <div className="px-8 md:px-12">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/70">Live</span>
-                  <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mt-2 mb-3">
-                    <span className="text-gradient">No Shows Yet</span>
-                  </h2>
-                  <p className="text-sm text-white/30 mb-6">Follow us for tour date announcements</p>
-                  <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3 bg-white text-black font-semibold text-sm rounded-full hover:bg-white/90 transition-all hover:scale-[1.02] active:scale-[0.98]">
-                    <InstagramIcon size={16} /> Follow on Instagram
-                  </a>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-[#050505]/20 to-[#050505]/80 z-10" />
+              <img src="/megband.jpg" alt="Meg Riot live" className="w-full h-[28rem] md:h-[36rem] object-cover" />
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-8">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ff3232]/80 mb-4">Live Shows</span>
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight mb-4">
+                  <span className="text-gradient">No Shows Yet</span>
+                </h2>
+                <p className="text-base md:text-lg text-white/40 mb-8 max-w-lg">We're just getting started. Follow us for tour date announcements.</p>
+                <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-white text-black font-semibold text-sm rounded-full hover:bg-white/90 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                  <InstagramIcon size={16} /> Follow on Instagram
+                </a>
               </div>
             </div>
           </RevealDiv>
