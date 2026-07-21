@@ -195,39 +195,27 @@ export default function Home() {
               <iframe src="https://www.youtube.com/embed/Vjz3lkueiC0" title="Meg Riot" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
             <a href="https://instagram.com/megriotband" target="_blank" rel="noopener noreferrer"
-              className="rounded-2xl border p-6 text-center transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-pink-500/50">
-              <div className="flex justify-center mb-3">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
-                  <InstagramIcon />
-                </div>
+              className="flex items-center gap-3 px-5 py-3 rounded-full border transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-pink-500/50">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                <InstagramIcon />
               </div>
-              <p className="text-sm text-white/80">@megriotband</p>
-              <p className="text-xl font-bold mt-1 text-white">Instagram</p>
-              <p className="text-xs mt-3 text-white">Follow for behind the scenes</p>
+              <span className="text-sm font-medium text-white/80">@megriotband</span>
             </a>
             <a href="https://www.youtube.com/@MegRiot" target="_blank" rel="noopener noreferrer"
-              className="rounded-2xl border p-6 text-center transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-red-500/50">
-              <div className="flex justify-center mb-3">
-                <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
-                  <YouTubeIcon />
-                </div>
+              className="flex items-center gap-3 px-5 py-3 rounded-full border transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-red-500/50">
+              <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center">
+                <YouTubeIcon />
               </div>
-              <p className="text-sm text-white/80">@MegRiot</p>
-              <p className="text-xl font-bold mt-1 text-white">YouTube</p>
-              <p className="text-xs mt-3 text-white">Live performances &amp; videos</p>
+              <span className="text-sm font-medium text-white/80">@MegRiot</span>
             </a>
             <a href="https://www.tiktok.com/@meg.riot" target="_blank" rel="noopener noreferrer"
-              className="rounded-2xl border p-6 text-center transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-cyan-400/50">
-              <div className="flex justify-center mb-3">
-                <div className="w-16 h-16 rounded-full bg-black flex items-center justify-center border border-white/20">
-                  <TikTokIcon />
-                </div>
+              className="flex items-center gap-3 px-5 py-3 rounded-full border transition-all hover:scale-105 bg-white/5 border-white/10 hover:border-cyan-400/50">
+              <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center border border-white/20">
+                <TikTokIcon />
               </div>
-              <p className="text-sm text-white/80">@meg.riot</p>
-              <p className="text-xl font-bold mt-1 text-white">TikTok</p>
-              <p className="text-xs mt-3 text-white">Short clips &amp; chaos</p>
+              <span className="text-sm font-medium text-white/80">@meg.riot</span>
             </a>
           </div>
         </div>
